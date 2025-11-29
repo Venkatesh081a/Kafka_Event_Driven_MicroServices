@@ -53,7 +53,7 @@ public class OrderSaga {
 		reserveProductCommand.setProductId(orderCreatedEvent.getProductId());
 		reserveProductCommand.setProductQuantity(orderCreatedEvent.getProductQuantity());
 		reserveProductCommand.setOrderId(orderCreatedEvent.getOrderId());
-
+		
 		kafkaTemplate.send(productsCommandsTopicName, reserveProductCommand);
 		orderHistoryService.add(orderCreatedEvent.getOrderId(), OrderStatus.CREATED);
 	}
